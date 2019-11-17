@@ -8,7 +8,7 @@ const searchURL = 'https://dataservice.accuweather.com/locations/v1/cities/autoc
 const geoSearchURL = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
 const oneDayForecastURL = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day';
 const fiveDayForecastURL = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day';
-const APIkey = 'FScXOJwiXYTFgZWTdIX8Ij0Xe4SGhAzU';
+const APIkey = 'ao8McnoX2b6WX3qpFBvH7TDAYZtf153h';
 
 const MOCK = [
   {
