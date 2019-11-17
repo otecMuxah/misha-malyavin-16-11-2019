@@ -35,7 +35,9 @@ export class WeatherPageComponent extends Unsubscribe implements AfterViewInit, 
       const longitude = data.coords.longitude;
       if (latitude && longitude) {
         this.weatherService.getCityByGeo(latitude, longitude).subscribe(geoData => {
-          this.currentCityGeolocated = geoData;
+          if (!geoData.error) {
+            this.currentCityGeolocated = geoData;
+          }
         });
       }
     }, (err) => console.log(err));

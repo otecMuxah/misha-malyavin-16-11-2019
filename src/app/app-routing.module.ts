@@ -5,7 +5,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full'},
+  { path: '', redirectTo: 'weather', pathMatch: 'full'},
   { path: '', children: [
       { path: 'weather', component: WeatherPageComponent},
       { path: 'favorites', component: FavoritesComponent}

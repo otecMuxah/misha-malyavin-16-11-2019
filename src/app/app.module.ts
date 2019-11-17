@@ -20,6 +20,7 @@ import {
   MatInputModule,
   MatListModule
 } from '@angular/material';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {
     WeatherPageComponent,
     FavoritesComponent,
     CityComponent,
-    ForecastComponent
+    ForecastComponent,
+    NotificationComponent
   ],
   imports: [
     StoreModule.forRoot({favoriteCities: favoritesReducer}),

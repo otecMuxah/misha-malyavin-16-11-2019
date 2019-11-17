@@ -1,7 +1,8 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {NotificationService} from './notification.service';
 
 const searchURL = 'https://dataservice.accuweather.com/locations/v1/cities/autocomplete';
 const geoSearchURL = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
@@ -372,42 +373,65 @@ const MOCK_GEO = {
 @Injectable({providedIn: 'root'})
 export class WeatherService {
 
-  public $currentForecast: Observable<DailyForecast[]>;
   public currentCity: City;
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    public _notificationService: NotificationService
   ) {}
+
 
   public getCitiesList(quote): Observable<City[]> {
     const params = new HttpParams().set('apikey', APIkey).set('q', quote).set('metric', 'true');
-    return this._http.get(searchURL, {params}).pipe(
-      catchError(err => of(err))
+    return this._http.get<City[]>(searchURL, {params}).pipe(
+      catchError( err => {
+        this._notificationService.publishNotification(err);
+        return this._handleError(err);
+      })
     );
   }
 
-  public getCityByGeo(lat, long) {
+  public getCityByGeo(lat, long): Observable<City> {
     const params = new HttpParams().set('apikey', APIkey).set('q', `${lat},${long}`);
-    return this._http.get(geoSearchURL, {params}).pipe(
-      catchError(err => of(err))
+    return this._http.get<City>(geoSearchURL, {params}).pipe(
+      catchError( err => {
+        this._notificationService.publishNotification(err);
+        return this._handleError(err);
+      })
     );
   }
 
   public getForecast(city: City): Observable<DailyForecast[]> {
     this.currentCity = city;
     const params = new HttpParams().set('apikey', APIkey).set('metric', 'true');
-    return this._http.get(`${fiveDayForecastURL}/${city.Key}`, {params}).pipe(
-      catchError(err => of(err)),
-      map(el => {
+    return this._http.get<ForecastSearchResult>(`${fiveDayForecastURL}/${city.Key}`, {params}).pipe(
+      map((el: ForecastSearchResult) => {
         return el.DailyForecasts;
+      }),
+      catchError( err => {
+        this._notificationService.publishNotification(err);
+        return this._handleError(err);
       })
     );
   }
+
+  private _handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+  }
 }
+
+
 
 export interface City {
   LocalizedName: string;
   Key: string;
+  error?: any;
 }
 
 export interface ForecastSearchResult {
