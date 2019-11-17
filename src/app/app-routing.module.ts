@@ -5,9 +5,9 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'weather' },
-  { path: 'weather', component: WeatherPageComponent },
-  { path: 'favorites', component: FavoritesComponent }
+  { path: '', redirectTo: 'weather', pathMatch: 'full'},
+  { path: 'weather', component: WeatherPageComponent, pathMatch: 'full'},
+  { path: 'favorites', component: FavoritesComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

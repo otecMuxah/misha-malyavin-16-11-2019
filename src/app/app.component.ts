@@ -15,11 +15,12 @@ export class AppComponent extends Unsubscribe {
     private router: Router
   ) {
     super();
-    // router.events.subscribe((event: any) => {
-    //   if (event && event instanceof NavigationEnd) {
-    //     this.activeNavURL = event.url;
-    //   }
-    // });
+    router.events.subscribe((event: any) => {
+      console.log(event);
+      if (event && event instanceof NavigationEnd) {
+        this.activeNavURL = event.url;
+      }
+    });
   }
 
   activeNavURL: any;
