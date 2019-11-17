@@ -431,7 +431,6 @@ export class WeatherService {
 export interface City {
   LocalizedName: string;
   Key: string;
-  error?: any;
 }
 
 export interface ForecastSearchResult {
