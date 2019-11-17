@@ -1,0 +1,5 @@
+<mat-card>
+  <button mat-button (click)="getForecast(city)">{{city.LocalizedName}}</button>
+  <button mat-button (click)="processFavorite(city)" [class.active]="favoritesService.isFavorite(city)">Favorite
+  </button>
+</mat-card>

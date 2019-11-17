@@ -1,0 +1,19 @@
+<form #searchForm="ngForm">
+  <mat-form-field>
+    <input matInput type="text" ngModel name="searchInput" placeholder="Find city">
+  </mat-form-field>
+</form>
+
+<app-city *ngFor="let city of $searchResults | async" [city]="city" (setForecast)="getForecast(city)"></app-city>
+
+
+<mat-divider></mat-divider>
+<ng-container *ngIf="currentCityGeolocated as city">
+  <span>Your current location is </span>
+  <app-city [city]="city" mat-button (click)="getForecast(city)">{{city.LocalizedName}}</app-city>
+</ng-container>
+<mat-divider></mat-divider>
+<app-forecast *ngIf="currentCity" [city]="currentCity"></app-forecast>
+
+
+
