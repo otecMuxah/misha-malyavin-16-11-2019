@@ -16,6 +16,7 @@ export class AppComponent extends Unsubscribe {
   ) {
     super();
     router.events.pipe(takeUntil(this.$destroySubj)).subscribe((event: any) => {
+      console.log(event);
       if (event instanceof NavigationEnd) {
         this.activeNavURL = event.url;
       }

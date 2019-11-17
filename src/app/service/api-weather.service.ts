@@ -3,10 +3,10 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-const searchURL = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete';
-const geoSearchURL = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
-const oneDayForecastURL = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day';
-const fiveDayForecastURL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day';
+const searchURL = 'https://dataservice.accuweather.com/locations/v1/cities/autocomplete';
+const geoSearchURL = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
+const oneDayForecastURL = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day';
+const fiveDayForecastURL = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day';
 const APIkey = 'FScXOJwiXYTFgZWTdIX8Ij0Xe4SGhAzU';
 
 const MOCK = [
