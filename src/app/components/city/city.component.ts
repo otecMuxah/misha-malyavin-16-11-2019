@@ -7,28 +7,23 @@ import {FavoritesService} from '../../service/favorites.service';
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss']
 })
-export class CityComponent implements OnInit {
+export class CityComponent {
   @Input()
   public city: City;
 
   @Output()
   public setForecast = new EventEmitter<City>();
 
-  public cityName: string;
-
   constructor(
     public weatherService: WeatherService,
     public favoritesService: FavoritesService
   ) { }
 
-  ngOnInit() {
-  }
-
-  getForecast(city: City) {
+  getForecast(city: City): void {
     this.setForecast.emit(city);
   }
 
-  processFavorite(city: City) {
+  processFavorite(city: City): void {
     this.favoritesService.processFavorite(city);
   }
 }

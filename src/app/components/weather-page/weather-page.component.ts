@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {map, takeUntil} from 'rxjs/operators';
+import {debounceTime, map, takeUntil} from 'rxjs/operators';
 import {Observable, of, Subscription} from 'rxjs';
 import {City, WeatherService} from '../../service/api-weather.service';
 import {Unsubscribe} from '../../shared/unsubscribe';
@@ -41,6 +41,7 @@ export class WeatherPageComponent extends Unsubscribe implements AfterViewInit, 
     }, (err) => console.log(err));
 
     this.searchForm.form.valueChanges.pipe(
+      debounceTime(500),
       takeUntil(this.$destroySubj),
       map((cahnge: SearchInput) => {
         if (cahnge.searchInput) {

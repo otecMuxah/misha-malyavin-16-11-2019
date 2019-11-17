@@ -18,7 +18,7 @@ export class ForecastComponent implements OnChanges {
     public favoritesService: FavoritesService
   ) { }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.weatherService.getForecast(this.city).subscribe(data => {
       this.forecast = data;
     });

@@ -4,8 +4,9 @@
   <li *ngFor="let cast of forecast" class="five-day-forecast-item" >
     <mat-card>
       <img src="{{getIconUrl(cast.Day.Icon)}}" alt="weather icon">
-      <div>min: {{cast.Temperature.Minimum.Value}}
-        <div>max: {{cast.Temperature.Maximum.Value}}</div>
+      <div>{{cast.Day.IconPhrase}}</div>
+      <div>min: {{cast.Temperature.Minimum.Value}}{{cast.Temperature.Minimum.Unit}}
+        <div>max: {{cast.Temperature.Maximum.Value}}{{cast.Temperature.Maximum.Unit}}</div>
       </div>
       <div>{{cast.Date | date}}</div>
     </mat-card>

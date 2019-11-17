@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '../../service/notification.service';
 import {map, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-notification',
@@ -10,7 +9,7 @@ import {Observable, of} from 'rxjs';
 })
 export class NotificationComponent implements OnInit {
 
-  public message: string[] = [];
+  public messages: string[] = [];
   public hideMessage: boolean;
 
   constructor(
@@ -23,11 +22,11 @@ export class NotificationComponent implements OnInit {
       tap(() => {
         this.hideMessage = false;
         setTimeout(() => {
-          this.message = [];
+          this.messages = [];
         }, 15000);
       })
     ).subscribe(data => {
-      this.message.push(data);
+      this.messages.push(data);
     });
   }
 
