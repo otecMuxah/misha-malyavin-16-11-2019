@@ -3,6 +3,7 @@ import {City} from './api-weather.service';
 import {Store} from '@ngrx/store';
 import * as FavoritesActions from '../store/app-weather.actions';
 import FavoritesState from '../store/app-weather.state';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class FavoritesService {

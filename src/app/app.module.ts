@@ -18,9 +18,10 @@ import {
   MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule, MatSlideToggleModule
 } from '@angular/material';
 import { NotificationComponent } from './components/notification/notification.component';
+import { UnitSwitcherComponent } from './components/unit-switcher/unit-switcher.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,11 @@ import { NotificationComponent } from './components/notification/notification.co
     FavoritesComponent,
     CityComponent,
     ForecastComponent,
-    NotificationComponent
+    NotificationComponent,
+    UnitSwitcherComponent
   ],
   imports: [
-    StoreModule.forRoot({favoriteCities: favoritesReducer}),
+    StoreModule.forRoot({weatherApp: favoritesReducer}),
     BrowserModule,
     AppRoutingModule,
     CommonModule,
@@ -44,7 +46,8 @@ import { NotificationComponent } from './components/notification/notification.co
     MatListModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

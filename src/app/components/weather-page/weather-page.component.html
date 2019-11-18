@@ -13,7 +13,7 @@
   <app-city [city]="city" mat-button (click)="getForecast(city)">{{city.LocalizedName}}</app-city>
 </ng-container>
 <mat-divider></mat-divider>
-<app-forecast *ngIf="currentCity" [city]="currentCity"></app-forecast>
+<app-forecast *ngIf="currentCity" [city]="currentCity" [temperatureUnitsCelsius]="temperatureUnitsCelsius"></app-forecast>
 
 
 

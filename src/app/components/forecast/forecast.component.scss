@@ -1,4 +1,25 @@
 .five-day-forecast-item {
   display: inline-block;
   margin: 5px;
+  padding: 0;
+}
+.five-day-forecast-list {
+  padding: 0;
+}
+
+@media all and (max-width: 600px) {
+  .five-day-forecast-item {
+    display: block;
+  }
+  .card {
+    display: flex;
+  }
+  .details {
+    margin-left: auto;
+  }
+  .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

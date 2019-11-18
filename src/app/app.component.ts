@@ -9,19 +9,20 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent extends Unsubscribe {
-  title = 'weather-app';
+  public title = 'weather-app';
+  public activeNavURL = '/weather';
 
   constructor(
-    private router: Router
+    private _router: Router
   ) {
     super();
-    router.events.subscribe((event: any) => {
-      if (event && event instanceof NavigationEnd) {
+    _router.events.subscribe((event: any) => {
+      if (event && event instanceof NavigationEnd && event.url !== '/') {
         this.activeNavURL = event.url;
-        console.log(this.activeNavURL);
+        if (event.url.indexOf('/weather') !== -1) {
+          this.activeNavURL = '/weather';
+        }
       }
     });
   }
-
-  activeNavURL: any;
 }

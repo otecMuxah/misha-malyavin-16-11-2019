@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let city of favoritesList">
+  <li *ngFor="let city of favoritesList" (click)="navigateTo(city)" >
     <app-forecast [city]="city"></app-forecast>
   </li>
 </ul>

@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {City, DailyForecast, WeatherService} from '../../service/api-weather.service';
 import {FavoritesService} from '../../service/favorites.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-forecast',
@@ -11,6 +12,9 @@ export class ForecastComponent implements OnChanges {
   @Input()
   public city: City;
 
+  @Input()
+  public temperatureUnitsCelsius = true;
+
   public forecast: DailyForecast[];
 
   constructor(
@@ -19,7 +23,7 @@ export class ForecastComponent implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
-    this.weatherService.getForecast(this.city).subscribe(data => {
+    this.weatherService.getForecast(this.city, this.temperatureUnitsCelsius).subscribe(data => {
       this.forecast = data;
     });
   }
