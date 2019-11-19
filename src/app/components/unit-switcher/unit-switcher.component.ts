@@ -8,14 +8,11 @@ import FavoritesState from '../../store/app-weather.state';
   templateUrl: './unit-switcher.component.html',
   styleUrls: ['./unit-switcher.component.scss']
 })
-export class UnitSwitcherComponent implements OnInit {
+export class UnitSwitcherComponent {
   private celsius = true;
   constructor(
     private _store: Store<FavoritesState>
   ) { }
-
-  ngOnInit() {
-  }
 
   changeUnits() {
     this.celsius = !this.celsius;
