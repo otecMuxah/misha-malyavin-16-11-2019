@@ -2,14 +2,24 @@
   display: inline-block;
   margin: 5px;
   padding: 0;
+  flex: 0 1 300px;
+  min-height: 200px;
+}
+.card {
+  min-height: 200px;
 }
 .five-day-forecast-list {
   padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media all and (max-width: 600px) {
   .five-day-forecast-item {
     display: block;
+  }
+  .five-day-forecast-list {
+    flex-direction: column;
   }
   .card {
     display: flex;
